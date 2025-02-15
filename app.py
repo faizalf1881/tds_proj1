@@ -12,13 +12,17 @@
 #   "python-dotenv",
 #   "httpx",
 #   "markdown",
-#   "duckdb"
+#   "duckdb",
+#   "pillow",
+#   "faker",
+#   "flask"
 # ]
 # ///
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import PlainTextResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+
 from tasksA import *
 from tasksB import *
 import requests
@@ -436,7 +440,7 @@ def get_completions(prompt: str):
     return response.json()["choices"][0]["message"]["tool_calls"][0]["function"]
 
 
-# Placeholder for task execution
+# Placeholder for task executiontas
 @app.post("/run")
 async def run_task(task: str):
     try:
