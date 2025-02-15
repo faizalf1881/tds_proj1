@@ -16,8 +16,17 @@ ENV PATH="/root/.local/bin:$PATH"
 # Set up the application directory
 WORKDIR /app
 
-# Copy application files
-COPY app.py /app
+# Copy ALL application files
+COPY app.py tasksA.py tasksB.py evaluate.py datagen.py .env /app/
 
-# Explicitly set the correct binary path and use `sh -c`
-CMD ["/root/.local/bin/uv", "run", "app.py"]
+# Create data directory with secure permissions
+RUN mkdir -p /data && chmod -R 755 /data
+
+# Use an entrypoint script for better reliability
+CMD sh -c "export \$(grep -v '^#' /app/.env | xargs) && \
+    /root/.local/bin/uv run datagen.py '21f1003135@ds.study.iitm.ac.in' --root /data && \
+    exec /root/.local/bin/uv run app.py"
+
+
+
+
