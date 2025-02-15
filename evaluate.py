@@ -225,7 +225,7 @@ async def a10(email, **kwargs):
     try:
         result = float(result)
     except ValueError:
-        logging.error(f" /data/ticket-sales-gold.txt was {result}, not a valid number")
+        logging.error(f"🔴 /data/ticket-sales-gold.txt was {result}, not a valid number")
         return False
     if abs(result - expected) > 0.1:
         return mismatch("/data/ticket-sales-gold.txt", expected, result)
