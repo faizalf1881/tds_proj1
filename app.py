@@ -318,6 +318,25 @@ function_definitions_llm = [
         }
     },
     {
+        "name": "B4",
+        "description": "Clone a Git repository and commit a message.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "repo_url": {
+                    "type": "string",
+                    "pattern": "https?://.*",
+                    "description": "Git repository URL to clone."
+                },
+                "commit_message": {
+                    "type": "string",
+                    "description": "Commit message for the changes."
+                }
+            },
+            "required": ["repo_url", "commit_message"]
+        }
+    },
+    {
         "name": "B5",
         "description": "Execute a SQL query on a specified database file and save the result to an output file.",
         "parameters": {
@@ -389,6 +408,21 @@ function_definitions_llm = [
                 }
             },
             "required": ["image_path", "output_path"]
+        }
+    },
+     {
+        "name": "B8",
+        "description": "Transcribe audio using Whisper AI.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "audio_path": {
+                    "type": "string",
+                    "pattern": ".*/(.*\\.(mp3|wav|ogg|flac))",
+                    "description": "Path to the input audio file."
+                }
+            },
+            "required": ["audio_path"]
         }
     },
     {
